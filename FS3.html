@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz Application</title>
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: linear-gradient(135deg, #8a2be2, #d66efd, #4b0082);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .quiz-box {
+            background: linear-gradient(145deg, #ffffff, #f3e8ff);
+            width: 420px;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(72, 0, 130, 0.3);
+            text-align: center;
+            border: 2px solid #8a2be2;
+            animation: fadeIn 0.8s ease;
+        }
+
+        h2 {
+            color: #4b0082;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px #d66efd;
+        }
+
+        #options {
+            text-align: left;
+            margin: 20px 0;
+        }
+
+        #options label {
+            display: block;
+            background: #f0e6ff;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            border-left: 5px solid #8a2be2;
+        }
+
+        #options label:hover {
+            background: #e0ccff;
+            transform: scale(1.02);
+        }
+
+        input[type="radio"] {
+            margin-right: 10px;
+            accent-color: #8a2be2;
+        }
+
+        button {
+            border: none;
+            padding: 10px 18px;
+            border-radius: 25px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #next {
+            background: linear-gradient(135deg, #8a2be2, #d66efd);
+            color: white;
+        }
+
+        #prev {
+            background: linear-gradient(135deg, #b09cff, #7b68ee);
+            color: white;
+        }
+
+        #next:hover {
+            background: linear-gradient(135deg, #7a1fd1, #c455f5);
+            transform: scale(1.05);
+        }
+
+        #prev:hover {
+            background: linear-gradient(135deg, #9a82ff, #6a5acd);
+            transform: scale(1.05);
+        }
+
+        .result {
+            display: none;
+        }
+
+        #score {
+            font-size: 22px;
+            color: #4b0082;
+            font-weight: bold;
+        }
+
+        #restart {
+            background: linear-gradient(135deg, #ff6fd8, #d66efd);
+            color: white;
+            margin-top: 15px;
+        }
+
+        #restart:hover {
+            background: linear-gradient(135deg, #e65ac4, #c455f5);
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="quiz-box">
+    <h2 id="question"></h2>
+    <div id="options"></div>
+    <button id="prev">Previous</button>
+    <button id="next">Next</button>
+
+    <div class="result">
+        <h3 id="score"></h3>
+        <button id="restart">Restart Quiz</button>
+    </div>
+</div>
+
+<script>
+$(document).ready(function () {
+  var questions = [
+    {
+      q: "What does HTML stand for?",
+      options: [
+        "Hyper Text Markup Language",
+        "High Text Machine Language",
+        "Hyperlinks Text Markup",
+      ],
+      answer: 0,
+    },
+    {
+      q: "Which symbol is used for jQuery?",
+      options: ["$", "#", "&"],
+      answer: 0,
+    },
+    {
+      q: "Which language is used for styling?",
+      options: ["HTML", "CSS", "Java"],
+      answer: 1,
+    },
+  ];
+
+  var index = 0;
+  var score = 0;
+  var selectedAnswers = [];
+
+  function loadQuestion() {
+    $(".quiz-box").hide().fadeIn(400);
+    $("#question").text(questions[index].q);
+    $("#options").empty();
+
+    $.each(questions[index].options, function (i, opt) {
+      $("#options").append(
+        `<label>
+            <input type="radio" name="option" value="${i}"> ${opt}
+        </label>`
+      );
+    });
+
+    if (selectedAnswers[index] !== undefined) {
+      $(`input[value=${selectedAnswers[index]}]`).prop("checked", true);
+    }
+  }
+
+  loadQuestion();
+
+  $("#next").click(function () {
+    if ($("input[name='option']:checked").length == 0) {
+      alert("Please select an answer");
+      return;
+    }
+
+    selectedAnswers[index] = $("input[name='option']:checked").val();
+    index++;
+
+    if (index < questions.length) {
+      loadQuestion();
+    } else {
+      showResult();
+    }
+  });
+
+  $("#prev").click(function () {
+    if (index > 0) {
+      index--;
+      loadQuestion();
+    }
+  });
+
+  function showResult() {
+    score = 0;
+
+    for (var i = 0; i < questions.length; i++) {
+      if (selectedAnswers[i] == questions[i].answer) {
+        score++;
+      }
+    }
+
+    $(".result").show();
+    $("#score").text("Your Score: " + score + "/" + questions.length);
+    $("#question, #options, #next, #prev").hide();
+  }
+
+  $("#restart").click(function () {
+    index = 0;
+    score = 0;
+    selectedAnswers = [];
+    $(".result").hide();
+    $("#question, #options, #next, #prev").show();
+    loadQuestion();
+  });
+});
+</script>
+
+</body>
+</html>

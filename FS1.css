@@ -1,0 +1,108 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f8f6ff;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+.navbar {
+    background: linear-gradient(90deg, #6a00ff, #9d4edd);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 22px;
+    letter-spacing: 1px;
+}
+
+.nav-link {
+    color: #fff !important;
+    margin-left: 15px;
+    font-weight: 500;
+}
+
+.nav-link:hover {
+    color: #ffd6ff !important;
+}
+#home {
+    background: linear-gradient(135deg, #7b2cbf, #c77dff, #5a189a);
+    color: white;
+    text-align: center;
+}
+
+#home h5 {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+#home .btn {
+    background-color: #ffffff;
+    color: #5a189a;
+    font-weight: bold;
+    border-radius: 30px;
+    padding: 10px 25px;
+}
+
+#home .btn:hover {
+    background-color: #ffd6ff;
+}
+h2 {
+    color: #5a189a;
+    font-weight: bold;
+}
+#about p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #333;
+}
+#skills {
+    background: linear-gradient(120deg, #f3e8ff, #ffffff);
+}
+
+#skills .card {
+    background: linear-gradient(135deg, #9d4edd, #7b2cbf);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    transition: 0.4s;
+}
+
+#skills .card:hover {
+    transform: translateY(-8px) scale(1.05);
+    background: linear-gradient(135deg, #5a189a, #9d4edd);
+}
+#projects .card {
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    transition: 0.4s;
+}
+
+#projects .card:hover {
+    transform: translateY(-10px);
+}
+
+#projects .card-title {
+    color: #6a00ff;
+    font-weight: bold;
+}
+
+/* ===== CONTACT ===== */
+#contact {
+    background: linear-gradient(135deg, #3c096c, #5a189a);
+}
+
+#contact h2 {
+    color: #ffd6ff;
+}
+
+#contact p {
+    font-size: 16px;
+}
+footer {
+    background: linear-gradient(90deg, #6a00ff, #9d4edd);
+    font-weight: 500;
+}
