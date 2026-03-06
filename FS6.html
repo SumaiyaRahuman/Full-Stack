@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Customer Survey</title>
+
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+    margin:0;
+    padding:0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg,#e9d5ff,#f3e8ff,#faf5ff);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+
+.form-container{
+    background:white;
+    padding:40px;
+    width:400px;
+    border-radius:16px;
+    box-shadow:0 10px 30px rgba(140, 90, 200,0.25);
+    text-align:center;
+}
+
+h2{
+    margin-bottom:25px;
+    color:#7c3aed;
+    font-weight:600;
+}
+
+
+label{
+    font-size:14px;
+    color:#555;
+    display:block;
+    text-align:left;
+    margin-bottom:6px;
+}
+
+
+input, select, textarea{
+    width:100%;
+    padding:10px;
+    border-radius:8px;
+    border:1px solid #ddd;
+    font-family:'Poppins', sans-serif;
+    margin-bottom:15px;
+    transition:0.3s;
+}
+
+input:focus, select:focus, textarea:focus{
+    border-color:#a855f7;
+    outline:none;
+    box-shadow:0 0 6px rgba(168,85,247,0.3);
+}
+
+/* Button */
+button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(135deg,#a855f7,#7c3aed);
+    color:white;
+    font-size:16px;
+    font-weight:500;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 6px 15px rgba(124,58,237,0.4);
+}
+
+textarea{
+    resize:none;
+    height:90px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="form-container">
+
+<h2>Customer Survey Form</h2>
+
+<form action="/submit" method="POST">
+
+<label>Name:</label>
+<input type="text" name="name" required>
+
+<label>Email:</label>
+<input type="email" name="email" required>
+
+<label>Rate our service:</label>
+<select name="rating">
+<option>Excellent</option>
+<option>Good</option>
+<option>Average</option>
+<option>Poor</option>
+</select>
+
+<label>Feedback:</label>
+<textarea name="feedback"></textarea>
+
+<button type="submit">Submit Survey</button>
+
+</form>
+
+</div>
+
+</body>
+</html>
